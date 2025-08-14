@@ -34,14 +34,16 @@ function useChart() {
   return context
 }
 
+interface ChartContainerProps extends React.ComponentProps<"div"> {
+  config: ChartConfig
+  children: React.ComponentProps<
+    typeof RechartsPrimitive.ResponsiveContainer
+  >[ "children" ]
+}
+
 const ChartContainer = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> & {
-    config: ChartConfig
-    children: React.ComponentProps<
-      typeof RechartsPrimitive.ResponsiveContainer
-    >[ "children" ]
-  }
+  ChartContainerProps
 >(({ id, className, children, config, ...props }, ref) => {
   const uniqueId = React.useId()
   const chartId = chart-${id || uniqueId.replace(/:/g, "")}
