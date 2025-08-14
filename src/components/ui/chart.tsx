@@ -66,7 +66,7 @@ const ChartContainer = React.forwardRef<
       </div>
     </ChartContext.Provider>
   )
-})
+}) as React.ForwardRefExoticComponent<ChartContainerProps & React.RefAttributes<HTMLDivElement>>
 ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
